@@ -2,28 +2,28 @@ import Navbar from "./components/Navbar";
 
 import HomePage from "./pages/HomePage";
 import SignUpPage from "./pages/SignUpPage";
-import LogInPage from "./pages/LogInPage";
+import LoginPage from "./pages/LoginPage";
 import SettingsPage from "./pages/SettingsPage";
 import ProfilePage from "./pages/ProfilePage";
 
 import { Routes, Route, Navigate } from "react-router-dom";
-import { useEffect } from "react";
 import { useAuthStore } from "./store/useAuthStore";
 import { useThemeStore } from "./store/useThemeStore";
+import { useEffect } from "react";
 
-import { Loader, LogIn } from "lucide-react";
+import { Loader } from "lucide-react";
 import { Toaster } from "react-hot-toast";
 
 const App = () => {
-  const { authUser, checkAuth, isCheckingAuth } = useAuthStore();
+  const { authUser, checkAuth, isCheckingAuth, onlineUsers } = useAuthStore();
   const { theme } = useThemeStore();
+
+  console.log({ onlineUsers });
+
   useEffect(() => {
     checkAuth();
   }, [checkAuth]);
 
-  useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
-  }, [theme]);
   console.log({ authUser });
 
   if (isCheckingAuth && !authUser)
@@ -34,8 +34,9 @@ const App = () => {
     );
 
   return (
-    <div>
+    <div data-theme={theme}>
       <Navbar />
+
       <Routes>
         <Route
           path="/"
@@ -47,7 +48,7 @@ const App = () => {
         />
         <Route
           path="/login"
-          element={!authUser ? <LogInPage /> : <Navigate to="/" />}
+          element={!authUser ? <LoginPage /> : <Navigate to="/" />}
         />
         <Route path="/settings" element={<SettingsPage />} />
         <Route
@@ -55,9 +56,9 @@ const App = () => {
           element={authUser ? <ProfilePage /> : <Navigate to="/login" />}
         />
       </Routes>
+
       <Toaster />
     </div>
   );
 };
-
 export default App;
