@@ -1,6 +1,6 @@
 # Web Chat App 
 
-Une application de messagerie en temps réel développée avec la stack MERN et Socket.io.
+Une application de messagerie en temps réel développée avec la stack **MERN** et **Socket.io**.
 
 ##  Technologies utilisées
 
