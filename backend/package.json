@@ -4,7 +4,8 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
-    "dev": "nodemon src/index.js"
+    "dev": "nodemon src/index.js",
+    "start": "node src/index.js"
   },
   "keywords": [],
   "author": "",
@@ -19,7 +20,8 @@
     "express": "^5.2.1",
     "jsonwebtoken": "^9.0.3",
     "mongoose": "^9.1.4",
-    "socket.io": "^4.8.3"
+    "socket.io": "^4.8.3",
+    "web-chat-app": "file:.."
   },
   "devDependencies": {
     "nodemon": "^3.1.11"
